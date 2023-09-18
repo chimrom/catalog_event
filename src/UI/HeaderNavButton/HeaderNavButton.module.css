@@ -1,0 +1,21 @@
+.navButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff;
+    border: 1px solid #f1582c;
+    border-radius: 16px;
+    color: #f1582c;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.navButton:hover {
+    background-color: #f85f35;
+    color: #fff;
+}
+
+.navButton img {
+    display: block;
+    width: 25px;
+}
