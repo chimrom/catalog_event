@@ -1,31 +1,24 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { GoodsListItemInterface } from '../../interfaces/AllInterfaces';
-import { GoodsList } from '../../Components/GoodsList/GoodsList';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GoodsList } from "../../Components/GoodsList/GoodsList";
+import { getCatalog } from "../../store/catalog/catalog";
 
-import classes from './Catalog.module.css';
+import classes from "./Catalog.module.css";
 
 export const Catalog = () => {
-	const [goodsList, setGoodsList] = useState<GoodsListItemInterface[] | []>([]);
-	const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useDispatch();
+    const goods = useSelector((state) => state.catalog.catalogList);
+    const isLoading = useSelector((state) => state.catalog.isLoading);
 
-	useEffect(() => {
-		async function getGoodsList() {
-			setIsLoading(true);
-			const response = await axios.get('https://appevent.ru/dev/task1/catalog');
-			setGoodsList(response.data.items);
-			setIsLoading(false);
-			try {
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getGoodsList();
-	}, []);
-	return (
-		<main>
-			<h1 className={classes.title}>Каталог товаров</h1>
-			<GoodsList goods={goodsList} />
-		</main>
-	);
+    // const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        dispatch(getCatalog());
+    }, [dispatch]);
+    return (
+        <main>
+            <h1 className={classes.title}>Каталог товаров</h1>
+            <GoodsList goods={goods} />
+        </main>
+    );
 };
