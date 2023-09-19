@@ -1,6 +1,6 @@
-export interface CatalogItemInterface {
-    id: string;
-    image: string;
-    name: string;
-    price: number;
+export interface GoodsListItemInterface {
+	id: string;
+	image: string;
+	name: string;
+	price: number;
 }
