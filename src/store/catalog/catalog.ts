@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { GoodsListItemInterface } from "../../interfaces/AllInterfaces";
+import { IGoodsListItem } from "../../interfaces/AllInterfaces";
+import { RootState } from "..";
 
 interface CatalogStateI {
-    catalogList: GoodsListItemInterface[];
+    catalogList: IGoodsListItem[];
     isLoading: boolean;
 }
 
 export const getCatalog = createAsyncThunk("catalog/getCatalog", async () => {
-    const { data } = await axios.get<
-        [],
-        { data: { items: GoodsListItemInterface[] } }
-    >("https://appevent.ru/dev/task1/catalog");
+    const { data } = await axios.get<[], { data: { items: IGoodsListItem[] } }>(
+        "https://appevent.ru/dev/task1/catalog"
+    );
 
     return data.items;
 });
@@ -23,7 +23,7 @@ const catalogSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(getCatalog.pending, (state, action) => {
+            .addCase(getCatalog.pending, (state) => {
                 state.isLoading = true;
             })
             .addCase(getCatalog.fulfilled, (state, action) => {
@@ -32,5 +32,10 @@ const catalogSlice = createSlice({
             });
     },
 });
+
+export const selectCatalogList = (state: RootState) =>
+    state.catalog.catalogList;
+
+export const selectCatalogLoad = (state: RootState) => state.catalog.isLoading;
 
 export default catalogSlice.reducer;

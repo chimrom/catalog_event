@@ -1,25 +1,29 @@
-import { FC } from 'react';
-import { BasketListItem } from '../BasketListItem/BasketListItem';
-import { GoodsListItemInterface } from '../../interfaces/AllInterfaces';
+import { FC } from "react";
+import { BasketListItem } from "../BasketListItem/BasketListItem";
+import { IGoodsListItem } from "../../interfaces/AllInterfaces";
 
-import classes from './BasketList.module.css';
+import classes from "./BasketList.module.css";
 
-interface BasketProps {
-	goods: GoodsListItemInterface[];
+interface IBasketProps {
+    goods: IGoodsListItem[];
 }
-export const BasketList: FC<BasketProps> = ({ goods }) => {
-	return (
-		<ol className={classes.list}>
-			{goods.map((item) => {
-				return (
-					<BasketListItem
-						key={item.id}
-						id={item.id}
-						name={item.name}
-						price={item.price}
-					/>
-				);
-			})}
-		</ol>
-	);
+export const BasketList: FC<IBasketProps> = ({ goods }) => {
+    return (
+        <ul className={classes.list}>
+            {!!goods.length ? (
+                goods.map((item) => {
+                    return (
+                        <BasketListItem
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            price={item.price}
+                        />
+                    );
+                })
+            ) : (
+                <p className={classes.notFound}>Корзина пуста</p>
+            )}
+        </ul>
+    );
 };
