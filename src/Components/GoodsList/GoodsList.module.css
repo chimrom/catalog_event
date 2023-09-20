@@ -3,3 +3,20 @@
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 16px;
 }
+
+.notFound {
+	text-align: center;
+	font-size: 25px;
+}
+
+@media (max-width: 1024px) {
+	.wrapper {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 640px) {
+	.wrapper {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+}

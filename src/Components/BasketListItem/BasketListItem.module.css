@@ -1,0 +1,17 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin: 20px 0;
+}
+
+.button {
+	background-color: #fff;
+	color: #f1582c;
+	cursor: pointer;
+}
+
+.button:hover {
+	text-decoration: underline;
+}

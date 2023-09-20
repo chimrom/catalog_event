@@ -1,17 +1,19 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GoodsList } from "../../Components/GoodsList/GoodsList";
-import { GoodsListItemInterface } from "../../interfaces/AllInterfaces";
+import { useSelector } from 'react-redux';
+import { BasketList } from '../../Components/BasketList/BasketList';
+import classes from './Basket.module.css';
 
 export const Basket = () => {
-    const dispatch = useDispatch();
-    const goods = useSelector((state) => state.basket.basketList);
+	const goods = useSelector((state) => state.basket.basketList);
+	const sumGoods = goods.reduce(
+		(accumulator, currentValue) => accumulator + currentValue.price,
+		0
+	);
 
-    // const [isLoading, setIsLoading] = useState(false);
-
-    return (
-        <>
-            <GoodsList goods={goods} />
-        </>
-    );
+	return (
+		<>
+			<h1 className={classes.title}>Корзина</h1>
+			<BasketList goods={goods} />
+			<h2 className={classes.sum}>Итого {sumGoods.toLocaleString('ru-RU')}</h2>
+		</>
+	);
 };

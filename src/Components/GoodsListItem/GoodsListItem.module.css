@@ -30,7 +30,8 @@
 }
 .name {
 	display: block;
-	font-weight: 500;
+	font-weight: 800;
+	font-size: 16px;
 	text-align: center;
 	margin-top: 38px;
 	max-height: 54px;
@@ -46,14 +47,24 @@
 
 .price {
 	color: rgb(20, 173, 20);
+	margin-top: 15px;
 }
 
 .button {
 	display: flex;
+	padding: 10px 20px;
+	border: 1px solid #f1582c;
+	border-radius: 20px;
 	font-weight: 300;
 	font-size: 18px;
 	text-align: center;
-	text-decoration-line: underline;
-	color: #bfbfbf;
+	color: #f1582c;
+	background-color: #fff;
 	margin-top: 22px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #f1582c;
+	color: #fff;
 }
